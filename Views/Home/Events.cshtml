@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Events";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Find out events hosted across Australia.</p>
+
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+<div id='map' style='width: 600px; height: 500px;'></div>
+<script>
+      mapboxgl.accessToken = 'pk.eyJ1Ijoic2hlbGJraW0iLCJhIjoiY2tmdjl5OWx3MTRubjJyczN4ZzA4enJncSJ9.daC6KSBG_2AhvXYlM5Rp1A';
+      var map = new mapboxgl.Map({
+        container: 'map',
+          style: 'mapbox://styles/mapbox/streets-v11',
+          center: [144.9404098, -37.8165087], // starting position
+          zoom: 9 // starting zoom
+      });
+    // Add zoom and rotation controls to the map.
+    map.addControl(new mapboxgl.NavigationControl());
+</script>

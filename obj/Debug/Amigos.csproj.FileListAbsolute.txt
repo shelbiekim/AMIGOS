@@ -105,3 +105,4 @@ C:\Users\user\source\repos\Amigos\obj\Debug\Amigos.csproj.CoreCompileInputs.cach
 C:\Users\user\source\repos\Amigos\obj\Debug\Amigos.csproj.CopyComplete
 C:\Users\user\source\repos\Amigos\obj\Debug\Amigos.dll
 C:\Users\user\source\repos\Amigos\obj\Debug\Amigos.pdb
+C:\Users\user\source\repos\Amigos\obj\Debug\Amigos.csprojAssemblyReference.cache

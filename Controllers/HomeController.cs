@@ -13,17 +13,17 @@ namespace Amigos.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Events()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Events across Australia";
 
             return View();
         }
         
-        [Authorize(Roles ="Administrator")]
-        public ActionResult Contact()
+        [Authorize]
+        public ActionResult Resources()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Learning Resources";
 
             return View();
         }
