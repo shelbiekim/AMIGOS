@@ -9,6 +9,7 @@ namespace Amigos.Controllers
     public class AdminsController : Controller
     {
         // GET: Admins
+        [Authorize(Roles = "Administrator")]
         public ActionResult Index()
         {
             return View();
