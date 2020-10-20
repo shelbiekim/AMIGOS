@@ -292,11 +292,17 @@
     <Content Include="FrontEnd\dist\css\alt\adminlte.plugins.css" />
     <Content Include="FrontEnd\dist\css\alt\adminlte.plugins.min.css" />
     <Content Include="FrontEnd\dist\img\AdminLTELogo.png" />
+    <Content Include="FrontEnd\dist\img\australia-320.jpg" />
+    <Content Include="FrontEnd\dist\img\australia-640.jpg" />
+    <Content Include="FrontEnd\dist\img\australia_image.jpg" />
     <Content Include="FrontEnd\dist\img\avatar.png" />
     <Content Include="FrontEnd\dist\img\avatar04.png" />
     <Content Include="FrontEnd\dist\img\avatar2.png" />
     <Content Include="FrontEnd\dist\img\avatar3.png" />
     <Content Include="FrontEnd\dist\img\avatar5.png" />
+    <Content Include="FrontEnd\dist\img\book-320.jpg" />
+    <Content Include="FrontEnd\dist\img\book-640.jpg" />
+    <Content Include="FrontEnd\dist\img\book_image.jpg" />
     <Content Include="FrontEnd\dist\img\boxed-bg.jpg" />
     <Content Include="FrontEnd\dist\img\boxed-bg.png" />
     <Content Include="FrontEnd\dist\img\credit\american-express.png" />
@@ -308,6 +314,7 @@
     <Content Include="FrontEnd\dist\img\credit\visa.png" />
     <Content Include="FrontEnd\dist\img\default-150x150.png" />
     <Content Include="FrontEnd\dist\img\icons.png" />
+    <Content Include="FrontEnd\dist\img\outdoor_image.jpg" />
     <Content Include="FrontEnd\dist\img\photo1.png" />
     <Content Include="FrontEnd\dist\img\photo2.png" />
     <Content Include="FrontEnd\dist\img\photo3.jpg" />

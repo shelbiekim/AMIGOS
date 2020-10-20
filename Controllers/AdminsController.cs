@@ -9,10 +9,18 @@ namespace Amigos.Controllers
     public class AdminsController : Controller
     {
         // GET: Admins
-        [Authorize(Roles = "Administrator")]
+        [Authorize]
         public ActionResult Index()
         {
-            return View();
+            if (User.IsInRole("Administrator"))
+            {
+                return View();
+            }
+            // redirect logged-in users who are not administrators
+            else
+            {
+                return Redirect("~/Home");
+            }
         }
     }
 }
