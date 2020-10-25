@@ -2,6 +2,7 @@
 using SendGrid.Helpers.Mail;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -16,11 +17,14 @@ namespace Amigos.Utils
         public void Send(String toEmail, String subject, String contents)
         {
             var client = new SendGridClient(API_KEY);
-            var from = new EmailAddress("kimshelbie@gmail.com", "Amigos test");
+            var from = new EmailAddress("kimshelbie@gmail.com", "AMIGOS");
             var to = new EmailAddress("shelbkim@gmail.com", "");
             var plainTextContent = contents;
             var htmlContent = "<p>" + contents + "</p>";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var bytes = File.ReadAllBytes("C:\\Users\\user\\source\\repos\\Amigos\\AMIGOS_Newsletter.html");
+            var file = Convert.ToBase64String(bytes);
+            msg.AddAttachment("Newsletter.html", file);
             var response = client.SendEmailAsync(msg);
         }
     }
