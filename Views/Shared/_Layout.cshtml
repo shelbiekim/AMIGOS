@@ -26,7 +26,11 @@
                     <li>@Html.ActionLink("Resources", "Resources", "Home")</li>
                     @if (User.IsInRole("Administrator"))
                     {
-                    <li>@Html.ActionLink("Admins", "Index", "Admins")</li>
+                        <li>@Html.ActionLink("Admins", "Index", "Admins")</li>
+                    }
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li>@Html.ActionLink("Send Email", "Send_Email", "Home")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
