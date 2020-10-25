@@ -109,3 +109,4 @@ C:\Users\user\source\repos\Amigos\bin\SendGrid.dll
 C:\Users\user\source\repos\Amigos\bin\StarkbankEcdsa.dll
 C:\Users\user\source\repos\Amigos\bin\SendGrid.pdb
 C:\Users\user\source\repos\Amigos\bin\SendGrid.xml
+C:\Users\user\source\repos\Amigos\obj\Debug\Amigos.csprojAssemblyReference.cache
