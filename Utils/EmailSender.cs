@@ -11,7 +11,7 @@ namespace Amigos.Utils
     public class EmailSender
     {
         // Please use your API KEY here.
-        private const String API_KEY = "SG.OZ7nrv4WRDan9DD7hAs7OQ.mvouMhOnKb29g3QA6579md9bO73yJt5rArwwxWAD9HY";
+        private const String API_KEY = "";
 
         public void Send(String toEmail, String subject, String contents)
         {
