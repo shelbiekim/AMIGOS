@@ -30,6 +30,14 @@ namespace Amigos.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult Study_List()
+        {
+            ViewBag.Message = "Study List";
+
+            return View();
+        }
+
         public ActionResult Send_Email()
         {
             return View(new SendEmailViewModel());

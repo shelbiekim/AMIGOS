@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "Study_List";
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - AMIGOS</title>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<script type="text/javascript">
+    var app = angular.module('myApp', []);
+    app.controller('todoCtrl', function ($scope) {
+        $scope.todolist = [];
+
+        $scope.todoAdd = function () {
+            $scope.todolist.push({ todoText: $scope.todoinput, done: false });
+            $scope.todoinput = "";
+        };
+
+        $scope.remove = function () {
+            var oldlist = $scope.todolist;
+            $scope.todolist = [];
+            angular.forEach(oldlist, function (x) {
+                if (!x.done) $scope.todolist.push(x);
+            });
+        };
+    });
+</script>
+<style>
+    .body-content {
+        text-align: center;
+    }
+    input[type=text] {
+        height: 35px;
+        width: 300px;
+        outline: none;
+        border-radius: 5px;
+    }
+    input[type=checkbox] {
+        cursor: pointer;
+        padding-left: 5px;
+    }
+    span {
+        padding-left: 20px;
+    }
+    .row {
+        justify-content: center;
+        display: flex;
+    }
+    .col-md-12 {
+        width: 40%;
+    }
+    #close {
+        float: right;
+        padding-right: 5px;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("AMIGOS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Events", "Events", "Home")</li>
+                    <li>@Html.ActionLink("Resources", "Resources", "Home")</li>
+                    <li>@Html.ActionLink("Study List", "Study_List", "Home")</li>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li>@Html.ActionLink("Admins", "Index", "Admins")</li>
+                    }
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li>@Html.ActionLink("Send Email", "Send_Email", "Home")</li>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content" ng-app="myApp" ng-controller="todoCtrl">
+        <h2 style="text-align:left;!important;">Study List</h2>
+        <h4>Your Study List</h4>
+        <br /><br />
+        <form ng-submit="todoAdd()">
+            <input type="text" ng-model="todoinput" required="" placeholder="Add New" />
+            <input type="submit" class="btn btn-success" value="Add New" style="margin-top:-3px;" />
+        </form>
+        <br />
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered table-hover" style="background-color:rgba(255,255,255,0.8);">
+                        <tr>
+                            <th class="text-center">To-do items</th>
+                        </tr>
+                        <tr ng-repeat="x in todolist" class="text-left">
+                            <td>
+                                <input type="checkbox" ng-model="x.done"><span class="task" ng-bind="x.todoText"></span>
+                                
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-danger" ng-click="remove()">Remove marked</button>
+
+    </div>
+
+</body>
+<br />
+<br />

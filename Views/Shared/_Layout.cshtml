@@ -24,6 +24,7 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Events", "Events", "Home")</li>
                     <li>@Html.ActionLink("Resources", "Resources", "Home")</li>
+                    <li>@Html.ActionLink("Study List", "Study_List", "Home")</li>
                     @if (User.IsInRole("Administrator"))
                     {
                         <li>@Html.ActionLink("Admins", "Index", "Admins")</li>
@@ -48,5 +49,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
 </body>
 </html>
