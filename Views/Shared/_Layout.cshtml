@@ -29,10 +29,6 @@
                     {
                         <li>@Html.ActionLink("Admins", "Index", "Admins")</li>
                     }
-                    @if (User.IsInRole("Administrator"))
-                    {
-                        <li>@Html.ActionLink("Send Email", "Send_Email", "Home")</li>
-                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -50,5 +46,6 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    <script src="~/Scripts/notify.min.js"></script>
 </body>
 </html>
