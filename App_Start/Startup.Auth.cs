@@ -54,15 +54,15 @@ namespace Amigos
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            app.UseFacebookAuthentication(
-               appId: "308571647263806",
-               appSecret: "176cb74f33d549bbf4dad38c6fdec541");
+            //app.UseFacebookAuthentication(
+            //   appId: "308571647263806",
+            //   appSecret: "176cb74f33d549bbf4dad38c6fdec541");
 
-            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            {
-                ClientId = "614662230781-jm5oi36ml8p0bgit720ucr1u9583in9p.apps.googleusercontent.com",
-                ClientSecret = "fMsE8t8J0CTfP6MfEpKOM28_"
-            });
+            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            //{
+            //    ClientId = "614662230781-jm5oi36ml8p0bgit720ucr1u9583in9p.apps.googleusercontent.com",
+            //    ClientSecret = "fMsE8t8J0CTfP6MfEpKOM28_"
+            //});
         }
     }
 }
