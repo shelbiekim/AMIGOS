@@ -6,6 +6,12 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
 namespace Amigos.Models
 {
@@ -21,6 +27,11 @@ namespace Amigos.Models
         }
     
         public int Id { get; set; }
+
+        [Required]
+        [StringLength(10000, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]
+        // alphanuemric and space
+        [RegularExpression(@"^[a-zA-Z ]+$", ErrorMessage = "Please enter the valid AuthorName")]
         public string AuthorName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

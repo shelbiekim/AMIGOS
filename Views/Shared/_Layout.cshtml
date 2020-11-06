@@ -23,8 +23,9 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Events", "Events", "Home")</li>
-                    <li>@Html.ActionLink("Resources", "Resources", "Home")</li>
+                    <li>@Html.ActionLink("Chart", "Chart", "Home")</li>
                     <li>@Html.ActionLink("Study List", "Study_List", "Home")</li>
+                    <li>@Html.ActionLink("Resources", "Resources", "Home")</li>
                     @if (User.IsInRole("Administrator"))
                     {
                         <li>@Html.ActionLink("Admins", "Index", "Admins")</li>

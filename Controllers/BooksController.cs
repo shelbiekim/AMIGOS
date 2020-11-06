@@ -37,6 +37,8 @@ namespace Amigos.Controllers
         }
 
         // GET: Books/Create
+        //[HandleError(View = "BadRequest", ExceptionType = typeof(HttpRequestValidationException))]
+        
         public ActionResult Create()
         {
             ViewBag.AuthorId = new SelectList(db.Authors, "Id", "AuthorName");
@@ -56,12 +58,15 @@ namespace Amigos.Controllers
             {
                 db.Books.Add(book);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            ViewBag.AuthorId = new SelectList(db.Authors, "Id", "AuthorName", book.AuthorId);
-            ViewBag.ImageId = new SelectList(db.Images, "Id", "ImageTitle", book.ImageId);
-            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "PublisherName", book.PublisherId);
+                ViewBag.AuthorId = new SelectList(db.Authors, "Id", "AuthorName", book.AuthorId);
+                ViewBag.ImageId = new SelectList(db.Images, "Id", "ImageTitle", book.ImageId);
+                ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "PublisherName", book.PublisherId);
+                return RedirectToAction("Index");
+
+            }
+            else { 
+            }
             return View(book);
         }
 

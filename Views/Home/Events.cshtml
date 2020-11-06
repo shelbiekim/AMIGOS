@@ -5,19 +5,156 @@
 <h3>@ViewBag.Message</h3>
 
 <p>Find out events hosted across Australia.</p>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 
-
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
-<div id='map' style='width: 600px; height: 500px;'></div>
+<style>
+    #map {
+        width: 100%;
+        margin-top: 75px;
+    }
+
+    .mapboxgl-ctrl-geocoder {
+        min-width: 100%;
+        text-align: center;
+    }
+
+    .geocoder {
+        position: absolute;
+        z-index: 1;
+        width: 250px;
+        left: 50%;
+        margin-left: 5%;
+        top: 10px;
+        text-align:center;
+    }
+
+    .marker {
+        background-image: url('/FrontEnd/dist/img/location.png');
+        background-size: cover;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .mapboxgl-popup {
+        max-width: 200px;
+    }
+
+    .mapboxgl-popup-content {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+    }
+</style>
+<!-- geocoder -->
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+      type="text/css" />
+<!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
+<!--Directions -->
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+<link rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
+      type="text/css" />
+
+
+
+<div id='map' style='width: 700px; height: 600px;'>
+    <div id="geocoder" class="geocoder"></div>
+</div>
+
 <script>
-      mapboxgl.accessToken = 'pk.eyJ1Ijoic2hlbGJraW0iLCJhIjoiY2tmdjl5OWx3MTRubjJyczN4ZzA4enJncSJ9.daC6KSBG_2AhvXYlM5Rp1A';
-      var map = new mapboxgl.Map({
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic2hlbGJraW0iLCJhIjoiY2tmdjl5OWx3MTRubjJyczN4ZzA4enJncSJ9.daC6KSBG_2AhvXYlM5Rp1A';
+    // create a map
+    var map = new mapboxgl.Map({
         container: 'map',
-          style: 'mapbox://styles/mapbox/streets-v11',
-          center: [144.9404098, -37.8165087], // starting position
-          zoom: 9 // starting zoom
-      });
+        style: 'mapbox://styles/mapbox/streets-v11', //'mapbox://styles/shelbkim/ckfvan0f70hsj19l9er9s7evd',
+        center: [144.9404098, -37.8165087], // starting position
+        zoom: 9 // starting zoom
+    });
+
     // Add zoom and rotation controls to the map.
     map.addControl(new mapboxgl.NavigationControl());
+
+    // directions
+    map.addControl(
+        new MapboxDirections({
+            accessToken: mapboxgl.accessToken
+        }),
+        'top-left'
+    );
+
+
+    // geocoder
+    var geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl,
+        placeholder: '        Search'
+    });
+
+    document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+
+    // create location data
+    var geojson = {
+        type: 'FeatureCollection',
+        features: [{
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [144.9385919, -37.8199889]
+            },
+            properties: {
+                title: 'Library at The Dock',
+                description: '107 Victoria Harbour Promenade, Docklands VIC 3008'
+            }
+        },
+        {
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [144.9695521, -37.803273]
+            },
+            properties: {
+                title: 'Melbourne Museum',
+                description: '11 Nicholson St, Carlton VIC 3053'
+            }
+            },
+            {
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [144.9869173, -37.8680265]
+            },
+            properties: {
+                title: 'St Kilda Library',
+                description: '150 Carlisle St, St Kilda VIC 3182'
+            }
+            }
+        ]
+    };
+
+    // add markers to map
+    geojson.features.forEach(function (marker) {
+
+        // create a HTML element for each feature
+        var el = document.createElement('div');
+        el.className = 'marker';
+
+        // make a marker for each feature and add to the map
+        new mapboxgl.Marker(el)
+            .setLngLat(marker.geometry.coordinates)
+            .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+            .addTo(map);
+    });
+   
+
 </script>

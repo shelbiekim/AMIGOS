@@ -4,16 +4,20 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Amigos.Utils
 {
+    [ValidateInput(false)]
     public class EmailSender
     {
         // Please use your API KEY here.
         private const String API_KEY = "";
 
+        
         public void Send(String toEmail, String subject, String contents)
         {
             var client = new SendGridClient(API_KEY);

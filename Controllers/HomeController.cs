@@ -8,6 +8,7 @@ using Amigos.Utils;
 
 namespace Amigos.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -21,7 +22,15 @@ namespace Amigos.Controllers
 
             return View();
         }
-        
+
+        public ActionResult Chart()
+        {
+            ViewBag.Message = "Language Difficulty Ranking";
+
+            return View();
+        }
+
+
         [Authorize]
         public ActionResult Resources()
         {
